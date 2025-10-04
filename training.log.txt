@@ -1,0 +1,6 @@
+2025-08-01 15:31:50,607 - INFO - Configuration loaded from config.yaml
+2025-08-01 15:31:50,611 - INFO - train: 0 images, 0 labels
+2025-08-01 15:31:50,612 - INFO - val: 0 images, 0 labels
+2025-08-01 15:31:50,614 - INFO - test: 0 images, 0 labels
+2025-08-01 15:31:50,617 - INFO - Dataset structure created at dataset
+2025-08-01 15:31:52,624 - ERROR - Training pipeline failed!

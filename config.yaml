@@ -1,0 +1,107 @@
+# YOLOv8 Configuration for Space Station Object Detection
+# Classes: Toolbox, Oxygen Tank, Fire Extinguisher
+
+# Dataset Configuration
+path: ./dataset  # Dataset root directory
+train: train/images  # Train images (relative to 'path')
+val: val/images      # Val images (relative to 'path')
+test: test/images    # Test images (relative to 'path')
+nc: 3
+names: ["Toolbox", "Oxygen Tank", "Fire Extinguisher"]
+
+# Classes
+class_names:
+  0: Toolbox
+  1: Oxygen Tank
+  2: Fire Extinguisher
+
+# Model Configuration
+model: yolov8n.pt  # Model size: n(nano), s(small), m(medium), l(large), x(xlarge)
+epochs: 100
+batch_size: 16
+imgsz: 640
+device: auto  # cuda device, i.e. 0 or 0,1,2,3 or cpu
+
+# Training Hyperparameters
+lr0: 0.01  # Initial learning rate
+lrf: 0.01  # Final learning rate (lr0 * lrf)
+momentum: 0.937
+weight_decay: 0.0005
+warmup_epochs: 3.0
+warmup_momentum: 0.8
+warmup_bias_lr: 0.1
+box: 7.5  # Box loss gain
+cls: 0.5  # Class loss gain
+dfl: 1.5  # DFL loss gain
+pose: 12.0  # Pose loss gain
+kobj: 2.0  # Keypoint obj loss gain
+label_smoothing: 0.0  # Label smoothing epsilon
+nbs: 64  # Nominal batch size
+overlap_mask: True  # Masks should overlap during training (segment train only)
+mask_ratio: 4  # Mask downsample ratio (segment train only)
+dropout: 0.0  # Use dropout regularization (classify train only)
+
+# Data Augmentation
+hsv_h: 0.015  # Image HSV-Hue augmentation (fraction)
+hsv_s: 0.7    # Image HSV-Saturation augmentation (fraction)
+hsv_v: 0.4    # Image HSV-Value augmentation (fraction)
+degrees: 0.0   # Image rotation (+/- deg)
+translate: 0.1  # Image translation (+/- fraction)
+scale: 0.5     # Image scale (+/- gain)
+shear: 0.0     # Image shear (+/- deg)
+perspective: 0.0  # Image perspective (+/- fraction), range 0-0.001
+flipud: 0.0    # Image flip up-down (probability)
+fliplr: 0.5    # Image flip left-right (probability)
+mosaic: 1.0    # Image mosaic (probability)
+mixup: 0.0     # Image mixup (probability)
+copy_paste: 0.0  # Segment copy-paste (probability)
+
+# Validation
+val: True  # Validate during training
+save_period: -1  # Save checkpoint every x epochs (disabled if < 1)
+save_dir: runs/train  # Save results to project/name
+
+# Logging
+project: space_station_detection
+name: yolov8_training
+exist_ok: False
+pretrained: True
+optimizer: auto
+verbose: True
+seed: 0
+deterministic: True
+single_cls: False
+rect: False
+cos_lr: False
+close_mosaic: 10
+resume: False
+amp: True
+fraction: 1.0
+cache: False
+image_weights: False
+multi_scale: False
+single_cls: False
+optimizer: SGD
+sync_bn: False
+workers: 8
+patience: 50
+save: True
+save_period: -1
+local_rank: -1
+entity: null
+upload_dataset: False
+bbox_interval: -1
+artifact_alias: latest
+quad: False
+cos_lr: False
+flat: 1
+linear_lr: False
+label_smoothing: 0.0
+patience: 100
+freeze: [0]
+save_period: -1
+local_rank: -1
+entity: null
+upload_dataset: False
+bbox_interval: -1
+artifact_alias: latest 

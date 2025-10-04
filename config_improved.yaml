@@ -1,0 +1,83 @@
+# Improved YOLOv8 Configuration for Higher Recall and mAP@0.5-0.95
+# Optimized for Space Station Object Detection: FireExtinguisher, ToolBox, OxygenTank
+
+# Dataset Configuration
+path: ./  # Dataset root directory
+train: data/train/images  # Train images
+val: data/val/images      # Val images
+test: data/test/images    # Test images
+
+# Classes
+nc: 3
+names: ['FireExtinguisher', 'ToolBox', 'OxygenTank']
+
+# Model Configuration - Use larger model for better performance
+model: yolov8l.pt  # Upgraded from yolov8m.pt for better feature extraction
+epochs: 50         # Increased from 20 for better convergence
+batch_size: 8      # Reduced due to larger image size
+imgsz: 832         # Increased from 640 for better small object detection
+device: auto       # Use GPU if available
+
+# Optimized Training Hyperparameters for Better Recall
+lr0: 0.005         # Reduced initial learning rate for stability
+lrf: 0.1           # Higher final LR ratio (was 0.01)
+momentum: 0.937
+weight_decay: 0.0005
+warmup_epochs: 3.0
+warmup_momentum: 0.8
+warmup_bias_lr: 0.1
+
+# Loss Function Tuning for Recall Improvement
+box: 7.5           # Box loss gain
+cls: 0.3           # Reduced class loss to emphasize detection over classification
+dfl: 1.5           # DFL loss gain
+label_smoothing: 0.1  # Added label smoothing for better generalization
+nbs: 64
+dropout: 0.1       # Added dropout for regularization
+
+# Enhanced Data Augmentation for Better Recall and Generalization
+hsv_h: 0.02        # Increased hue augmentation (was 0.015)
+hsv_s: 0.8         # Increased saturation augmentation (was 0.7)
+hsv_v: 0.5         # Increased value augmentation (was 0.4)
+degrees: 10.0      # Added rotation augmentation (was 0.0)
+translate: 0.2     # Increased translation (was 0.1)
+scale: 0.9         # Increased scale augmentation (was 0.5)
+shear: 2.0         # Added shear augmentation (was 0.0)
+perspective: 0.0005 # Added perspective augmentation
+flipud: 0.5        # Added vertical flip
+fliplr: 0.5        # Horizontal flip probability
+mosaic: 0.7        # Increased mosaic probability
+mixup: 0.15        # Increased mixup for better generalization
+copy_paste: 0.3    # Increased copy-paste augmentation
+close_mosaic: 10   # Disable mosaic in last 10 epochs for precision
+
+# Advanced Training Settings
+patience: 15       # Early stopping patience
+save_period: 5     # Save checkpoint every 5 epochs
+val: True
+plots: True
+verbose: True
+
+# Multi-scale Training for Better Detection at Different Scales
+multiscale: True   # Enable multi-scale training
+scale_range: [0.8, 1.2]  # Scale range for multi-scale training
+
+# Test Time Augmentation (TTA) for inference
+tta: True          # Enable TTA during validation
+
+# Optimizer Settings
+optimizer: AdamW   # AdamW optimizer for better convergence
+cos_lr: True       # Cosine learning rate scheduler
+
+# Advanced Augmentation Techniques
+erasing: 0.4       # Random erasing probability
+crop_fraction: 1.0 # Crop fraction for training
+
+# Model EMA (Exponential Moving Average)
+ema: True          # Enable model EMA for better validation performance
+ema_decay: 0.9999  # EMA decay rate
+
+# Additional Settings for Space Station Environment
+# These settings are optimized for indoor/space station lighting conditions
+auto_augment: randaugment  # Use RandAugment for automatic augmentation
+augment: True      # Enable augmentation
