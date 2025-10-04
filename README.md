@@ -81,13 +81,9 @@ mkdir -p logs models results
 Dataset Structure
 
 dataset/
-
 ├── train/
-
 │   ├── images/
-
 │   └── labels/
-
 ├── val/
 │   ├── images/
 │   └── labels/
